@@ -8,14 +8,14 @@ define(function () {
 		autosave: 1,
 
 		// Indicates if load data inside editor after init
-    autoload: 1,
+    	autoload: 0,
 
 		// Indicates which storage to use. Available: local | remote
 		type: 'local',
 
 		// If autosave enabled, indicates how many steps (general changes to structure)
 		// need to be done before save. Useful with remoteStorage to reduce remote calls
-		stepsBeforeSave: 1,
+		stepsBeforeSave: 0,
 
 		//Enable/Disable components model (JSON format)
 		storeComponents: false,

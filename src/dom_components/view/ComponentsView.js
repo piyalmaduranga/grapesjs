@@ -5,7 +5,7 @@ function(Backbone, require) {
 
 		initialize: function(o) {
 			this.opts = o || {};
-			this.config = o.config || {};
+			this.config = o.config;
 			this.listenTo( this.collection, 'add', this.addTo );
 			this.listenTo( this.collection, 'reset', this.render );
 		},
@@ -17,13 +17,9 @@ function(Backbone, require) {
 		 * @return	void
 		 * @private
 		 * */
-		addTo: function(model) {
+		addTo: function(model){
 			var i	= this.collection.indexOf(model);
 			this.addToCollection(model, null, i);
-
-			if(this.config.em) {
-				this.config.em.trigger('add:component', model);
-			}
 		},
 
 		/**
@@ -46,15 +42,7 @@ function(Backbone, require) {
 			var ct = this.opts.componentTypes;
 
 			var type = model.get('type');
-
-			for (var it = 0; it < dt.length; it++) {
-				var dtId = dt[it].id;
-				if(dtId == type) {
-					viewObject = dt[it].view;
-					break;
-				}
-			}
-			//viewObject = dt[type] ? dt[type].view : dt.default.view;
+			viewObject = dt[type] ? dt[type].view : dt.default.view;
 
 			var view = new viewObject({
 				model: model,

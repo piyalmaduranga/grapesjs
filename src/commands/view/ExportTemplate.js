@@ -7,7 +7,6 @@ define(function() {
 
 			run: function(editor, sender) {
 				this.sender = sender;
-				this.wrapper = editor.DomComponents.getWrapper();
 				this.components = editor.DomComponents.getComponents();
 				this.modal = editor.Modal || null;
 				this.cm = editor.CodeManager || null;
@@ -66,7 +65,7 @@ define(function() {
 				}
 				var addCss = this.protCss || '';
 				this.htmlEditor.setContent(this.cm.getCode(this.components, 'html', this.cssc));
-				this.cssEditor.setContent(addCss + this.cm.getCode(this.wrapper, 'css', this.cssc));
+				this.cssEditor.setContent(addCss + this.cm.getCode(this.components, 'css', this.cssc));
 
 				if(this.sender)
 					this.sender.set('active',false);

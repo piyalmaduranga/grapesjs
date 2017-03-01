@@ -10,6 +10,7 @@ define(['backbone', 'text!./../template/fileUploader.html'],
 			this.options 	= o || {};
 			this.config		= o.config	|| {};
 			this.pfx			= this.config.stylePrefix || '';
+			this.ppfx = this.config.pStylePrefix || '';
 			this.target		= this.collection || {};
 			this.uploadId	= this.pfx + 'uploadFile';
 			this.disabled	= !this.config.upload;
@@ -47,7 +48,8 @@ define(['backbone', 'text!./../template/fileUploader.html'],
 				},
 				cache: false, contentType: false, processData: false
 			}).done(function(data){
-				target.add(data.data);
+				var jsonData = JSON.parse(data);
+				target.add(jsonData.data);
 			}).always(function(){
 				//turnOff loading
 			});
@@ -82,11 +84,13 @@ define(['backbone', 'text!./../template/fileUploader.html'],
 		},
 
 		render : function(){
+			console.log("File uploader render");
 			this.$el.html( this.template({
-				title: this.config.uploadText,
-				uploadId: this.uploadId,
-				disabled: this.disabled,
-				pfx: this.pfx
+				title		: this.config.uploadText,
+				uploadId	: this.uploadId,
+				disabled	: this.disabled,
+				pfx			: this.pfx,
+				ppfx		: this.ppfx
 			}) );
 			this.initDrop();
 			this.$el.attr('class', this.pfx + 'file-uploader');

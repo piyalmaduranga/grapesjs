@@ -9,33 +9,15 @@ define(['backbone','./ItemView'],
 			this.opt = o;
 			this.config = o.config;
 			this.preview = o.preview;
-			this.ppfx = o.config.pStylePrefix || '';
-			this.pfx = o.config.stylePrefix || '';
+			this.sorter = o.sorter || {};
+			this.pfx = o.config.stylePrefix;
 			this.parent = o.parent;
 			this.listenTo(this.collection, 'add', this.addTo);
 			this.listenTo(this.collection, 'reset resetNavigator', this.render);
 			this.className 	= this.pfx + 'items';
 
-			if(this.config.sortable && !this.opt.sorter){
-				var pfx = this.pfx;
-				var utils = this.config.em.get('Utils');
-				this.opt.sorter = new utils.Sorter({
-					container: this.el,
-					containerSel: '.' + pfx + 'items',
-					itemSel: '.' + pfx + 'item',
-					ppfx: this.ppfx,
-					pfx: pfx,
-					nested: 1
-				});
-			}
-
-			this.sorter = this.opt.sorter || '';
-
 			if(!this.parent)
 				this.className	+= ' ' + this.pfx + this.config.containerId;
-
-			// For the sorter
-			this.$el.data('collection', this.collection);
 		},
 
 		/**

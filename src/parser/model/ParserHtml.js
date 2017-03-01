@@ -4,7 +4,6 @@ define(function(require) {
 
     var TEXT_NODE = 'span';
     var c = config;
-    var modelAttrStart = 'data-gjs-';
 
     return {
 
@@ -59,7 +58,7 @@ define(function(require) {
        * @param  {HTMLElement} el DOM
        * @return {Array<Object>}
        */
-      parseNode: function(el) {
+      parseNode: function(el){
         var result = [];
         var nodes = el.childNodes;
 
@@ -74,20 +73,12 @@ define(function(require) {
 
           if(ct){
             var obj = '';
-            /*
             for (var cType in ct) {
               var component = ct[cType].model;
               obj = component.isComponent(node);
               if(obj)
                 break;
-            }*/
-            for (var it = 0; it < ct.length; it++) {
-              var component = ct[it].model;
-              obj = component.isComponent(node);
-              if(obj)
-                break;
             }
-
             model = obj;
           }
 
@@ -109,21 +100,13 @@ define(function(require) {
               model.classes = this.parseClass(nodeValue);
             else if (nodeName == 'contenteditable')
               continue;
-            else if(nodeName.indexOf(modelAttrStart) === 0){
-              var modelAttr = nodeName.replace(modelAttrStart, '');
-              nodeValue = nodeValue === 'true' ? true : nodeValue;
-              nodeValue = nodeValue === 'false' ? false : nodeValue;
-              model[modelAttr] = nodeValue;
-            }else
+            else
               model.attributes[nodeName] = nodeValue;
           }
 
-
+          // Check for nested elements
           var nodeChild = node.childNodes.length;
-
-          // Check for nested elements and avoid them if an array
-          // was already given
-          if(nodeChild && !model.components){
+          if(nodeChild){
             // Avoid infinite text nodes nesting
             var firstChild = node.childNodes[0];
             if(nodeChild === 1 && firstChild.nodeType === 3){
@@ -203,12 +186,13 @@ define(function(require) {
         var scripts = el.querySelectorAll('script');
         var i = scripts.length;
 
-        // Remove all scripts
+        // Remove all script if only allow removescript
+       /* while (i--)
+          scripts[i].parentNode.removeChild(scripts[i]);*/
         if(!config.allowScripts){
-          while (i--)
-            scripts[i].parentNode.removeChild(scripts[i]);
+                   while (i--)
+                       scripts[i].parentNode.removeChild(scripts[i]);
         }
-
         // Detach style tags and parse them
         if(parserCss){
           var styleStr = '';
@@ -236,7 +220,6 @@ define(function(require) {
       },
 
     };
-
   };
 
 });

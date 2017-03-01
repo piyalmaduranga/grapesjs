@@ -12,7 +12,7 @@ define(['backbone', './SelectComponent','./SelectPosition'],
 				this.noSelClass	= this.ppfx + 'no-select';
 			},
 
-			enable: function() {
+			enable: function(){
 				SelectComponent.enable.apply(this, arguments);
 				this.getBadgeEl().addClass(this.badgeClass);
 				this.getHighlighterEl().addClass(this.hoverClass);
@@ -40,7 +40,6 @@ define(['backbone', './SelectComponent','./SelectPosition'],
 				var drag = el.get('draggable');
 				if(!drag)
 					return;
-
 				// Avoid badge showing on move
 				this.cacheEl = null;
 				this.startSelectPosition(e.target, this.frameEl.contentDocument);
@@ -49,38 +48,6 @@ define(['backbone', './SelectComponent','./SelectPosition'],
 				this.stopSelectComponent();
 				this.$wrapper.off('mousedown', this.initSorter);
 				this.getContentWindow().on('keydown', this.rollback);
-			},
-
-			/**
-			 * Init sorter from model
-			 * @param  {Object} model
-			 * @private
-			 */
-			initSorterFromModel: function(model) {
-				var drag = model.get('draggable');
-				if(!drag)
-					return;
-				// Avoid badge showing on move
-				this.cacheEl = null;
-				var el = model.view.el;
-				this.startSelectPosition(el, this.frameEl.contentDocument);
-				this.sorter.draggable = drag;
-				this.sorter.onEndMove = this.onEndMoveFromModel.bind(this);
-
-				/*
-				this.sorter.setDragHelper(el);
-				var dragHelper = this.sorter.dragHelper;
-				dragHelper.className = this.ppfx + 'drag-helper';
-				dragHelper.innerHTML = '';
-				dragHelper.backgroundColor = 'white';
-				*/
-
-				this.stopSelectComponent();
-				this.getContentWindow().on('keydown', this.rollback);
-			},
-
-			onEndMoveFromModel: function() {
-				this.getContentWindow().off('keydown', this.rollback);
 			},
 
 			/**

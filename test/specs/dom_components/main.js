@@ -26,10 +26,6 @@ define([
 				var config;
 				var storagMock = utils.storageMock();
 				var editorModel = {
-					config: {
-						loadCompsOnRender: 0,
-					},
-					get: function(){return;},
 					getHtml: function(){return 'testHtml';},
 					getComponents: function(){return {test: 1};},
 					getCacheLoad: function(){
@@ -120,7 +116,7 @@ define([
 					obj.render().should.be.ok;
 				});
 
-				it.skip('Add components at init', function() {
+				it('Add components at init', function() {
 					obj = new DomComponents().init({
 						components : [{}, {}, {}]
 					});

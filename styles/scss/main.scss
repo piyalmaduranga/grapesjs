@@ -135,14 +135,6 @@ $fontV: 20;//random(1000)
 	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==");
 }
 
-.#{$app-prefix}no-user-select{
-	@include user-select(none);
-}
-
-.#{$app-prefix}no-pointer-events{
-  pointer-events: none;
-}
-
 .#{$app-prefix}bg-main{
   background-color: $mainColor;
 }
@@ -155,36 +147,10 @@ $fontV: 20;//random(1000)
   color: $fontColorActive;
 }
 
-.#{$app-prefix}bdrag {
-  pointer-events: none !important;
-  position: absolute !important;
-  z-index: 10 !important;
+.#{$app-prefix}bdrag{
+  position: absolute;
+  z-index: 10;
   width: auto;
-}
-
-.#{$app-prefix}drag-helper {
-  background-color: $colorBlue !important;
-  pointer-events: none !important;
-  position: absolute !important;
-  z-index: 10 !important;
-  transform: scale(0.3) !important;
-  transform-origin: top left !important;
-  -webkit-transform-origin: top left !important;
-  margin: 15px !important;
-  transition: none !important;
-  outline: none !important;
-}
-
-.#{$app-prefix}grabbing,
-.#{$app-prefix}grabbing * {
-  @extend .#{$app-prefix}no-user-select;
-
-  cursor: grabbing !important;
-  cursor: -webkit-grabbing !important;
-}
-
-.#{$app-prefix}grabbing {
-  overflow: hidden;
 }
 
 .#{$app-prefix}off-prv{
@@ -194,19 +160,6 @@ $fontV: 20;//random(1000)
   z-index: 10;
   padding: 5px;
   cursor: pointer;
-}
-
-// Custom scrollbars for Chrome
-.#{$app-prefix}editor-cont ::-webkit-scrollbar-track {
-  background: $mainDklColor;
-}
-
-.#{$app-prefix}editor-cont ::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.#{$app-prefix}editor-cont ::-webkit-scrollbar {
-  width: 8px;
 }
 
 /********************* MAIN ************************/
@@ -223,8 +176,7 @@ $fontV: 20;//random(1000)
 	box-sizing: border-box;
 	height: 100%;
 }
-.#{$app-prefix}freezed,
-.#{$nv-prefix}freezed {
+.#{$app-prefix}freezed{
   @include opacity(0.50);
   pointer-events: none;
 }
@@ -310,9 +262,82 @@ div.#{$app-prefix}select {
 }
 
 /*************  CANVAS  ****************/
+.#{$cv-prefix}canvas {
+  background-color: rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  position: absolute;
+  width: (100% - $leftWidth);
+  height: 100%;
+  bottom: 0; left: 0;
+  overflow: hidden;
+  padding-top: 40px;
+  z-index:1;
 
-@import "gjs_canvas";
+  > iframe {
+    background-color: #fff;
+    height: 100%;
+    outline: medium none;
+    width: 100%;
+    border: none;
+    margin: 0 auto;
+    display: block;
+  }
 
+  .#{$app-prefix}ghost{
+    display: none;
+    pointer-events: none;
+    background-color: #5b5b5b;
+    border: 2px dashed #ccc;
+    position: absolute;
+    z-index: 10;
+    @include opacity(0.55);
+  }
+
+  .#{$app-prefix}highlighter, .#{$app-prefix}highlighter-sel{
+    position: absolute;
+    outline: 1px solid $colorBlue;
+    pointer-events: none;
+  }
+
+  .#{$app-prefix}highlighter-warning{
+    outline: 3px solid $colorYell;
+  }
+
+  .#{$app-prefix}highlighter-sel{
+    outline: 3px solid $colorBlue;
+  }
+
+  ##{$app-prefix}tools{
+    width: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    outline: none;
+  }
+
+  	/* This simulate body behaviour */
+  	> div:first-child {
+  		background-color: #fff;
+  		position: relative;
+	    height: 100%;
+	    overflow: auto;
+	    width: 100%;
+	}
+}
+
+.#{$cv-prefix}canvas *{box-sizing: border-box;}
+
+.#{$app-prefix}frame{
+  transition: width 0.35s ease;
+}
+
+.btn-cl {
+  font-size: 25px;
+  @include opacity(0.3);
+  cursor: pointer;
+  &:hover{
+  	@include opacity(0.7);
+  }
+}
 /*************  RTE  ****************/
 #commands.panel {
     min-width: 35px;
@@ -388,31 +413,23 @@ ol.example li.placeholder:before {position: absolute;}
 .#{$app-prefix}badge-warning{
 	background-color: $colorYell;
 }
-.#{$app-prefix}placeholder,
-.#{$com-prefix}placeholder,
-.#{$nv-prefix}placeholder {
+.#{$app-prefix}placeholder, .#{$com-prefix}placeholder{
 	position: absolute;
 	z-index: 10;
   pointer-events: none;
   display: none;
 }
-
-.#{$app-prefix}placeholder,
-.#{$nv-prefix}placeholder {
+.#{$app-prefix}placeholder{
   /*border-width: 3px !important;*/
   border-style: solid !important;
   border-color: $colorGreen;
   outline: none;
-  box-sizing: border-box;
 }
-
-.#{$app-prefix}placeholder-int,
-.#{$com-prefix}placeholder-int,
-.#{$nv-prefix}placeholder-int {
+.#{$app-prefix}placeholder-int, .#{$com-prefix}placeholder-int{
 	background-color: $colorGreen;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 	height: 100%; width: 100%;
-	pointer-events: none;
+	pointer-events: 'none';
 	padding: 1.5px;
   outline: none;
 }
@@ -568,35 +585,27 @@ ol.example li.placeholder:before {position: absolute;}
     cursor:pointer;
     z-index: 1;
 	}
+	.#{$nv-prefix}item .#{$nv-prefix}title {
+		font-size: 11px;
+		padding: 7px 10px 7px 30px;
+	}
+	.#{$nv-prefix}item ##{$nv-prefix}caret {
+		font-size: 7px;
+		width: 8px;
+	}
 }
-
-.#{$nv-prefix}item ##{$nv-prefix}caret {
-  font-size: 7px;
-  width: 8px;
-  padding: 5px;
-  cursor: pointer;
-  @include opacity(0.7);
-
-  &:hover {
-    @include opacity(1);
-  }
-}
-
 .#{$nv-prefix}item .#{$nv-prefix}title-c {
   @extend .#{$app-prefix}bg-main;
 }
-
-.#{$nv-prefix}title {
+.#{$nv-prefix}item .#{$nv-prefix}title {
   background-color: $mainDklColor;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 1px;
-  padding: 3px 10px 5px 30px;
+  padding: 7px 10px 7px 25px;
   border-bottom: 1px solid $mainDkColor;
   border-top: 1px solid $mainLhColor;
-  display: flex;
-  align-items: center;
+  cursor:pointer;
 }
-
 .#{$nv-prefix}item .#{$nv-prefix}children .#{$nv-prefix}title{
 	border-left: 1px solid lighten($mainDkColor,2%);
 }
@@ -614,40 +623,10 @@ ol.example li.placeholder:before {position: absolute;}
   right: 0; top: 0;
   padding: 7px 10px 7px 5px;
 }
-/*
 .#{$nv-prefix}item{
 	&.#{$nv-prefix}selected{
 		border: 2px solid $colorBlue;
 	}
-}
-*/
-.#{$nv-prefix}selected .#{$nv-prefix}title {
-    background-color: rgba(255,255,255,0.1);
-}
-
-.#{$nv-prefix}nav-item-edit {
-  visibility: hidden;
-  padding: 5px;
-  font-size: 10px;
-  @include opacity(0.7);
-
-  &:hover {
-    @include opacity(1);
-  }
-}
-
-.#{$nv-prefix}title-c:hover {
-
-  .#{$nv-prefix}nav-item-edit {
-    visibility: visible;
-    cursor: pointer;
-  }
-}
-
-.#{$app-prefix}nav-comp-name {
-  padding: 5px;
-  box-sizing: content-box;
-  @extend .#{$app-prefix}no-user-select;
 }
 
 /************* END Navigator *************/
@@ -1058,36 +1037,24 @@ $lightBorder: rgba(255, 255, 255, 0.05);
 
 /********* Block manager **********/
 
-.#{$app-prefix}blocks-c {
+.#{$app-prefix}blocks-c{
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
-.#{$app-prefix}block {
+.#{$app-prefix}block{
   @include user-select(none);
-  @extend .#{$app-prefix}bg-main;
-
   width: 45%;
   padding: 1em;
   box-sizing: border-box;
   height: 90px;
   cursor:all-scroll;
+  margin: 2.5%;
   font-size: 11px;
   font-weight: lighter;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-  margin: 10px 2.5% 5px;
-  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15);
-  transition: all 0.2s ease 0s;
-  transition-property: box-shadow, color;
-
-  &:hover {
-    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.15);
-  }
 }
 
 .#{$app-prefix}block.fa {
@@ -1368,6 +1335,78 @@ $paddElClm: 5px 6px;
 	}
 }
 
+.#{$am-prefix}assets-advert {
+  background-color: $mainDklColor;
+  border-radius: 3px;
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+  float:right;
+  height: 149px;
+  overflow: hidden;
+
+  ##{$am-prefix}preview-cont{
+    position: relative;
+    height: 70px; width: 30%;
+    background-color: $mainColor;
+    border-radius: 2px;
+    float: left;
+    overflow: hidden;
+  }
+
+  ##{$am-prefix}preview{
+    position: absolute;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+  ##{$am-prefix}preview-bg{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    @include opacity(0.5);
+    z-index: 0;
+  }
+
+  .#{$am-prefix}highlight {
+    background-color: $mainLhColor;
+  }
+
+  .#{$am-prefix}asset {
+    border-bottom: 1px solid darken($mainDkColor, 3%);
+    padding: 5px;
+    cursor:pointer;
+    position: relative;
+
+    &:hover ##{$am-prefix}close { display: block;}
+
+  }
+  ##{$am-prefix}close {
+    @extend .btn-cl;
+    position: absolute;
+    right: 5px;
+    top: 0;
+    display: none;
+  }
+
+  ##{$am-prefix}meta {
+    width: 70%;
+    float: left;
+    font-size: 12px;
+    padding: 5px 0 0 5px;
+    box-sizing: border-box;
+
+    > div { margin-bottom: 5px;}
+    ##{$am-prefix}dimensions {
+      font-size: 10px;
+      @include opacity(0.5);
+    }
+  }
+}
 /********* File uploader **********/
 
 $uploadPadding:	150px 10px;
@@ -1450,7 +1489,7 @@ $uploadPadding:	150px 10px;
   position: absolute;
   border-radius: 3px;
   overflow: hidden;
-  z-index: 10;
+  z-index: 5;
 
   .#{$rte-prefix}btn {
   	@extend .#{$app-prefix}color-main;

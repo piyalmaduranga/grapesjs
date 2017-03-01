@@ -4,25 +4,35 @@ define(['backbone'],
 		return Backbone.Model.extend({
 
 			defaults: {
-				type: 'text', // text, number, range, select
+        type: 'text', // text, number, range, select
 				label: '',
-				name: '',
+        name: '',
 				min: '',
 				max: '',
-				value: '',
+        value: '',
 				target: '',
 				default: '',
 				placeholder: '',
 				changeProp: 0,
-				options: [],
+        options: [],
 			},
 
 			initialize: function(){
-				if (this.get('target')) {
-					this.target = this.get('target');
-					this.unset('target');
-				}
-			},
+				if(!this.get('target'))
+          throw new Error('Target not found');
+      },
 
-		});
+			/**
+			 * Need to remove target from it otherwise with toJSON
+			 * creates an infinite loop
+			 * @return {Object}
+			 * @private
+			 */
+			toJSON: function(){
+				var obj = this.attributes;
+				delete obj.target;
+				return obj;
+			}
+
+    });
 	});

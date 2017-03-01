@@ -1,17 +1,16 @@
 define(function () {
 	return {
-		stylePrefix: 'comp-',
+		stylePrefix		: 'comp-',
 
-		wrapperId: 'wrapper',
+		wrapperId			: 'wrapper',
 
 		// Default wrapper configuration
-		wrapper: {
-			//classes: ['body'],
-			removable: false,
-			copyable: false,
-			stylable: ['background','background-color','background-image', 'background-repeat','background-attachment','background-position'],
-			draggable: false,
-			badgable: false,
+		wrapper			: {
+			removable : false,
+			copyable	: false,
+			stylable	: ['background','background-color','background-image', 'background-repeat','background-attachment','background-position'],
+			draggable	: false,
+			badgable	: false,
 			components: [],
 		},
 
@@ -27,6 +26,6 @@ define(function () {
 		oAssetsOnCreate	: true,
 
 		// List of void elements
-		voidElements: ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'menuitem', 'meta', 'param', 'source', 'track', 'wbr'],
+		voidElements: ['area','js', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'menuitem', 'meta', 'param', 'source', 'track', 'wbr'],
 	};
 });

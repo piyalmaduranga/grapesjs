@@ -1,0 +1,75 @@
+
+> grapesjs@0.3.35 start /home/maduranga/workspace/go/src/github.com/vedicsoft/vamps-captive/server/webapps/grapesjs
+> ./node_modules/.bin/grunt dev
+
+[4mRunning "connect:server" (connect) task[24m
+Started connect web server on http://localhost:8000
+
+[4mRunning "watch" task[24m
+Waiting...
+[32m>> [39mFile "src/editor/config/config.js" changed.
+[4mRunning "jshint:all" (jshint) task[24m
+[32m>> [39m173 files lint free.
+
+[32mDone, without errors.[39m
+[36mCompleted in 12.214s at Thu Feb 09 2017 10:55:43 GMT+0530 (+0530)[39m - Waiting...
+[32m>> [39mFile "src/editor/config/config.js" changed.
+[4mRunning "jshint:all" (jshint) task[24m
+[32m>> [39m173 files lint free.
+
+[32mDone, without errors.[39m
+[36mCompleted in 3.272s at Thu Feb 09 2017 11:01:12 GMT+0530 (+0530)[39m - Waiting...
+[32m>> [39mFile "src/dom_components/model/ComponentAdvert.js" changed.
+[4mRunning "jshint:all" (jshint) task[24m
+[32m>> [39m174 files lint free.
+
+[32mDone, without errors.[39m
+[36mCompleted in 3.327s at Thu Feb 09 2017 11:14:03 GMT+0530 (+0530)[39m - Waiting...
+[32m>> [39mFile "src/dom_components/view/ComponentAdvertView.js" added.
+[4mRunning "jshint:all" (jshint) task[24m
+[32m>> [39m175 files lint free.
+
+[32mDone, without errors.[39m
+[36mCompleted in 3.375s at Thu Feb 09 2017 11:14:38 GMT+0530 (+0530)[39m - Waiting...
+[32m>> [39mFile "src/dom_components/main.js" changed.
+[4mRunning "jshint:all" (jshint) task[24m
+[32m>> [39m175 files lint free.
+
+[32mDone, without errors.[39m
+[36mCompleted in 2.687s at Thu Feb 09 2017 11:16:52 GMT+0530 (+0530)[39m - Waiting...
+[32m>> [39mFile "src/editor/config/config.js" changed.
+[32m>> [39mFile "src/dom_components/model/ComponentAdvert.js" changed.
+[32m>> [39mFile "src/dom_components/view/ComponentAdvertView.js" changed.
+[4mRunning "jshint:all" (jshint) task[24m
+[32m>> [39m175 files lint free.
+
+[32mDone, without errors.[39m
+[36mCompleted in 9.734s at Thu Feb 09 2017 14:28:55 GMT+0530 (+0530)[39m - Waiting...
+[32m>> [39mFile "src/dom_components/view/ComponentAdvertView.js" changed.
+[32m>> [39mFile "src/dom_components/main.js" changed.
+[32m>> [39mFile "src/dom_components/model/ComponentAdvert.js" changed.
+[4mRunning "jshint:all" (jshint) task[24m
+[32m>> [39m175 files lint free.
+
+[32mDone, without errors.[39m
+[36mCompleted in 3.116s at Thu Feb 09 2017 14:31:28 GMT+0530 (+0530)[39m - Waiting...
+[32m>> [39mFile "src/dom_components/view/ComponentAdvertView.js" changed.
+[32m>> [39mFile "src/dom_components/main.js" changed.
+[32m>> [39mFile "src/dom_components/model/ComponentAdvert.js" changed.
+[4mRunning "jshint:all" (jshint) task[24m
+[32m>> [39m175 files lint free.
+
+[32mDone, without errors.[39m
+[36mCompleted in 2.943s at Thu Feb 09 2017 14:45:58 GMT+0530 (+0530)[39m - Waiting...
+[32m>> [39mFile "src/dom_components/view/ComponentAdvertView.js" changed.
+[4mRunning "jshint:all" (jshint) task[24m
+[32m>> [39m175 files lint free.
+
+[32mDone, without errors.[39m
+[36mCompleted in 2.869s at Thu Feb 09 2017 15:03:59 GMT+0530 (+0530)[39m - Waiting...
+[32m>> [39mFile "src/dom_components/view/ComponentAdvertView.js" changed.
+[4mRunning "jshint:all" (jshint) task[24m
+[32m>> [39m175 files lint free.
+
+[32mDone, without errors.[39m
+[36mCompleted in 12.668s at Thu Feb 09 2017 17:15:15 GMT+0530 (+0530)[39m - Waiting...

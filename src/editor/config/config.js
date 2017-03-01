@@ -2,91 +2,77 @@ define(function () {
 	var blkStyle = '.blk-row::after{ content: ""; clear: both; display: block;} .blk-row{padding: 10px;}';
 	return {
 
-    // Style prefix
-    stylePrefix: 'gjs-',
+		// Style prefix
+		stylePrefix: 'gjs-',
 
-    //TEMP
-    components: '',
+		//TEMP
+		components: '',
 
-    // Enable/Disable possibility to copy(ctrl + c) & paste(ctrl + v) components
-    copyPaste: true,
+		// Enable/Disable possibility to copy(ctrl + c) & paste(ctrl + v) components
+		copyPaste: true,
 
-    // Show an alert before unload the page with unsaved changes
-    noticeOnUnload: true,
+		// Enable/Disable undo manager
+		undoManager: true,
 
-    // Enable/Disable undo manager
-    undoManager: true,
+		// Height for the editor container
+		height: '100%',
 
-    // Height for the editor container
-    height: '900px',
+		// Width for the editor container
+		width: '100%',
 
-    // Width for the editor container
-    width: '100%',
+		// The css that could only be seen (for instance, inside the code viewer)
+		protectedCss: '*{box-sizing: border-box;}body{margin:0;height:100%}#wrapper{min-height:100%; overflow:auto}',
 
-    // CSS that could only be seen (for instance, inside the code viewer)
-    protectedCss: '*{box-sizing: border-box;}body{margin:0;height:auto;background:#fff}#wrapper{min-height:100%; overflow:auto}',
+		// Default command
+		defaultCommand: 'select-comp',
 
-    // CSS for the iframe which containing the canvas, useful if you need to custom something inside
-    // (eg. the style of the selected component)
-    canvasCss: '',
+		// If true render a select of available devices
+		showDevices: 1,
 
-    // Default command
-    defaultCommand: 'select-comp',
+		// Allow script tag importing
+		allowScripts: 1,
 
-    // Show a toolbar when the component is selected
-    showToolbar: 1,
+		// When enabled, on device change media rules won't be created
+		devicePreviewMode: 0,
 
-    // Allow script tag importing
-    allowScripts: 0,
+		// Dom element
+		el: '',
 
-    // If true render a select of available devices
-    showDevices: 1,
+		//Configurations for Asset Manager
+		assetManager: {},
 
-    // When enabled, on device change media rules won't be created
-    devicePreviewMode: 0,
+		//Configurations for Canvas
+		canvas: {},
 
-    // This option makes available custom component types also for loaded
-    // elements inside canvas
-    loadCompsOnRender: 1,
+		//Configurations for Layers
+		layers: {},
 
-    // Dom element
-    el: '',
+		//Configurations for Storage Manager
+		storageManager: {},
 
-    //Configurations for Asset Manager
-    assetManager: {},
+		//Configurations for Rich Text Editor
+		rte: {},
 
-    //Configurations for Canvas
-    canvas: {},
+		//Configurations for DomComponents
+		domComponents: {},
 
-    //Configurations for Layers
-    layers: {},
+		//Configurations for Modal Dialog
+		modal: {},
 
-    //Configurations for Storage Manager
-    storageManager: {},
+		//Configurations for Code Manager
+		codeManager: {},
 
-    //Configurations for Rich Text Editor
-    rte: {},
+		//Configurations for Panels
+		panels: {},
 
-    //Configurations for DomComponents
-    domComponents: {},
+		//Configurations for Commands
+		commands: {},
 
-    //Configurations for Modal Dialog
-    modal: {},
+		//Configurations for Css Composer
+		cssComposer: {},
 
-    //Configurations for Code Manager
-    codeManager: {},
-
-    //Configurations for Panels
-    panels: {},
-
-    //Configurations for Commands
-    commands: {},
-
-    //Configurations for Css Composer
-    cssComposer: {},
-
-    //Configurations for Selector Manager
-    selectorManager: {},
+		//Configurations for Selector Manager
+		selectorManager: {},
 
 		//Configurations for Device Manager
 		deviceManager: {
@@ -220,7 +206,7 @@ define(function () {
 	        	activeOnRender: 1
 	        },
 	      },{
-					id: 'image',
+				id: 'image',
 	        label: 'Image',
 	        attributes: {class:'gjs-fonts gjs-f-image'},
 	        content: {
@@ -262,8 +248,17 @@ define(function () {
 							width: '615px',
 						}
 					},
-	      }/*,{
-					id: 'table',
+	      },{
+				id: 'advert',
+				label: 'Advert',
+				attributes: {class:'fa fa-bullhorn'},
+				content: {
+					style: {color: 'black'},
+					type:'advert',
+					activeOnRender: 1
+				},
+			},/*{
+			id: 'table',
 	        label: 'Table',
 	        attributes: {class:'fa fa-table'},
 	        content: {

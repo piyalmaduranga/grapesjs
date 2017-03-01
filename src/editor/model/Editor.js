@@ -39,22 +39,7 @@ define(['backbone', 'backboneUndo', 'keymaster', 'Utils', 'StorageManager', 'Dev
 				this.initUndoManager(); // Is already called (inside components and css composer)
 
 				this.on('change:selectedComponent', this.componentSelected, this);
-        this.on('change:changesCount', this.updateBeforeUnload, this);
 			},
-
-      /**
-       * Set the alert before unload in case it's requested
-       * and there are unsaved changes
-       */
-      updateBeforeUnload: function() {
-        var changes = this.get('changesCount');
-
-        if (this.config.noticeOnUnload && changes) {
-          window.onbeforeunload = function(e) { return 1;};
-        } else {
-          window.onbeforeunload = null;
-        }
-      },
 
 			/**
 			 * Load generic module
@@ -169,11 +154,9 @@ define(['backbone', 'backboneUndo', 'keymaster', 'Utils', 'StorageManager', 'Dev
 					Backbone.UndoManager.removeUndoType("change");
 					var beforeCache;
 					Backbone.UndoManager.addUndoType("change:style", {
-						"on": function (model, value, opts) {
-							var opt = opts || {};
-							if(!beforeCache){
+						"on": function (model, value, opt) {
+							if(!beforeCache)
 								beforeCache = model.previousAttributes();
-							}
 							if (opt && opt.avoidStore) {
 								return;
 							} else {
@@ -329,7 +312,7 @@ define(['backbone', 'backboneUndo', 'keymaster', 'Utils', 'StorageManager', 'Dev
 				if(!cmp || !cm)
 					return;
 
-				var wrp	= cmp.getComponents();
+				var wrp	= cmp.getComponent();
 				return cm.getCode(wrp, 'json');
 			},
 
@@ -385,10 +368,8 @@ define(['backbone', 'backboneUndo', 'keymaster', 'Utils', 'StorageManager', 'Dev
 				if(!cmp || !cm || !cssc)
 					return;
 
-				var wrp = cmp.getComponent();
-				var protCss = this.config.protectedCss;
-
-				return protCss + cm.getCode(wrp, 'css', cssc);
+				var wrp	= cmp.getComponent();
+				return cm.getCode(wrp, 'css', cssc);
 			},
 
 			/**
@@ -487,25 +468,6 @@ define(['backbone', 'backboneUndo', 'keymaster', 'Utils', 'StorageManager', 'Dev
 					return;
 				command.stop(this, this);
 				this.defaultRunning = 0;
-			},
-
-			/**
-			 * Update canvas dimensions and refresh data useful for tools positioning
-			 * @private
-			 */
-			refreshCanvas: function () {
-	      this.set('canvasOffset', this.get('Canvas').getOffset());
-			},
-
-			/**
-			 * Clear all selected stuf inside the window, sometimes is useful to call before
-			 * doing some dragging opearation
-			 * @param {Window} win If not passed the current one will be used
-			 * @private
-			 */
-			clearSelection: function (win) {
-				var w = win || window;
-				w.getSelection().removeAllRanges();
 			},
 
 		});

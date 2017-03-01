@@ -8,6 +8,7 @@ define(function () {
 	var ola = 'open-layers';
 	var obl = 'open-blocks';
 	var ful = 'fullscreen';
+	var save = 'save';
 	var prv = 'preview';
 
 	return {
@@ -56,7 +57,13 @@ define(function () {
 				className: 'fa fa-code',
 				command: expt,
 				attributes: { title: 'View code' },
-			}],
+			}, {
+					id: save,
+					className: 'fa fa-save',
+					command: save,
+					context: save,
+					attributes: { title: 'Save code' },
+				}],
 		},{
 			id: 'views',
 			buttons	: [{

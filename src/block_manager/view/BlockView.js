@@ -19,12 +19,11 @@ function(Backbone) {
      * Start block dragging
      * @private
      */
-    onDrag: function(e) {
+    onDrag: function(){
       if(!this.config.getSorter)
         return;
-      this.config.em.refreshCanvas();
       var sorter = this.config.getSorter();
-      sorter.setDragHelper(this.el, e);
+      //this.config.dragHelper(this.el.cloneNode(1));
       sorter.startSort(this.el);
       sorter.setDropContent(this.model.get('content'));
       this.doc.on('mouseup', this.onDrop);
@@ -34,7 +33,7 @@ function(Backbone) {
      * Drop block
      * @private
      */
-    onDrop: function() {
+    onDrop: function(){
       this.doc.off('mouseup', this.onDrop);
       this.config.getSorter().endMove();
     },

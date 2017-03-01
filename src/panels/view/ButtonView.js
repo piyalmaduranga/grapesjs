@@ -209,14 +209,8 @@ function(Backbone, require) {
 			var command	= null;
 			var editor = this.em && this.em.get ? this.em.get('Editor') : null;
 			var commandName = this.model.get('command');
-
-			if (this.commands && typeof commandName === 'string') {
+			if(this.commands)
 				command	= this.commands.get(commandName);
-			} else if (commandName !== null && typeof commandName === 'object') {
-				command = commandName;
-			} else if (typeof commandName === 'function') {
-				command = {run: commandName};
-			}
 
 			if(this.model.get('active')){
 
@@ -226,7 +220,7 @@ function(Backbone, require) {
 				if(this.parentM)
 					this.parentM.set('active', true, { silent: true }).trigger('checkActive');
 
-				if(command && command.run){
+				if(command){
 					command.run(editor, this.model, this.model.get('options'));
 					editor.trigger('run:' + commandName);
 				}
@@ -238,7 +232,7 @@ function(Backbone, require) {
 				if(this.parentM)
 					this.parentM.set('active', false, { silent: true }).trigger('checkActive');
 
-				if(command && command.stop){
+				if(command){
 					command.stop(editor, this.model, this.model.get('options'));
 					editor.trigger('stop:' + commandName);
 				}

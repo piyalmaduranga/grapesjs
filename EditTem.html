@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="dist/css/grapes.min.css">
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="dist/grapes.min.js"></script>
+    <script src="grapesjs-plugin-export/dist/grapesjs-plugin-export.min.js"></script>
+</head>
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+    }
+</style>
+<body>
+<div id="gjs">
+    <link rel="stylesheet" href="slt/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/css/style.css">
+    <link rel="stylesheet" href="styles/assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/assets/css/form-elements.css">
+    <div class="container" id="home">
+        <div class="row">
+            <img src="slt/assets/img/Commercial_Bank_logo.png" style="width: 60%;margin-bottom: 10px; margin-top: 10px"
+                 align="right">
+        </div>
+        <div class="row">
+            <div class="image-container">
+                <img src="slt/assets/img/home-banner.png" style="width: 100% ">
+                <div class="after"><h3 style="color:#fff ; text-align: center"><strong>Welcome to Commercial Bank Free
+                    WiFi Zone</strong></h3></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-top-min">
+                <div class="col-md-12">
+                    <div class="alert alert-danger alert-dismissible" role="alert"
+                         style="display: none;">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        Login Failed!. Please check username and password.
+                    </div>
+                    <div class="alert alert-success" style="display: none;">
+                        Your form validation is successful!
+                    </div>
+                </div>
+            </div>
+            <div class="form-bottom">
+                <button class="facebook icon-btn btn-block fa fa-facebook" name="button" type="submit">
+                    <span class="text-container ">Log in with Facebook</span>
+                </button>
+                <hr>
+                <form role="form" action="#" method="post" class="login-form" id="existing-signup-form">
+                    <div class="form-group">
+                        <label class="sr-only" for="ex_username">Name</label>
+                        <div class="input-group">
+                                    	<span class="input-group-addon">
+											<i class="fa fa-user"></i>
+											</span>
+                            <input type="text" name="ex_username" placeholder="Name"
+                                   class="form-username form-control" id="ex_username">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="telephone_no">Telephone No</label>
+                        <div class="input-group">
+											<span class="input-group-addon">
+											<i class="fa fa-phone"></i>
+											</span>
+                            <input type="text" maxlength="10" name="telephone_no"
+                                   placeholder="Telephone No"
+                                   class="form-password form-control" id="telephone_no">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 text-right footer-btn">
+                            <div class="next">
+                                <button type="button" class="btn btn-primary btn-lg"
+                                        id="next">
+                                    Next <i class="fa fa-arrow-circle-right fa-2x"
+                                            aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var editor = grapesjs.init({
+        container: '#gjs',
+        fromElement: true,
+        plugins: ['gjs-plugin-export'],
+        pluginsOpts: {
+            'gjs-plugin-export': {
+                btnLabel: 'EXPORT',
+                preHtml: '<!doctype><html><head><link rel="stylesheet" href="./css/style.css"></head><body>'
+            }
+        }
+    });
+    window.onbeforeunload = function(e) {
+        alert("testing piyal");
+        console.log('Do something');
+        //...
+        editor.store();
+        //...
+        return 1; // Return something if you want the alert message
+    };
+</script>

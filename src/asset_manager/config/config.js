@@ -1,5 +1,6 @@
 define(function () {
 	return {
+
 		// Default assets
 		assets: [],
 
@@ -7,12 +8,10 @@ define(function () {
 		stylePrefix: 'am-',
 
 		// Url where uploads will be send, set false to disable upload
-		upload: 'http://localhost/assets/upload',
+		upload: '/captive/api/assets/upload',
 
 		// Text on upload input
 		uploadText: 'Drop files here or click to upload',
 
-		// Label for the add button
-		addBtnText: 'Add image',
 	};
 });

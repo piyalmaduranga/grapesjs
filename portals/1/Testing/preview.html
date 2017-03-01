@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>preview</title>
+        <link rel="stylesheet" href="ui-phone/css/normalize.css">
+        <link rel="stylesheet" href="ui-phone/css/style.css">
+  </head>
+
+  <body>
+
+    <!--The Main Thing-->
+<div id="wrapper">
+<div class="phone view_2" id="phone_1">
+  <div id="loader">Loading...</div>
+  <iframe src="index.html?previewmode=on" id="frame_1"></iframe>
+</div>
+</div>
+
+<!--Controls etc.-->
+<div id="controls">
+    <!--Idea by /u/aerosole-->
+  <div>
+    <label for="iframePerspective">Add perspective:</label>
+    <input type="checkbox" id="iframePerspective"  checked="true" />
+  </div>
+
+</div>
+
+<div id="phone-controls">
+
+  <div id="views">
+      <button value="1">Table View</button>
+      <button value="2">Front View</button>
+  </div>
+
+  <div id="phones">
+      <button value="1">iPhone 6</button>
+      <button value="2">Samsing Galaxy Note</button>
+      <button value="3">Microsoft Lumia 1020</button>
+      <button value="4">HTC One</button>
+      <button value="5">iPad Mini</button>
+      <!--<button value="6">Desktop</button>-->
+  </div>
+
+</div>
+
+    
+        <script src="ui-phone/js/index.js"></script>
+  </body>
+</html>

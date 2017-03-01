@@ -12,7 +12,6 @@ define(['backbone', './AssetView', './AssetImageView', './FileUploader', 'text!.
 			this.listenTo( this.collection, 'add', this.addToAsset );
 			this.listenTo( this.collection, 'deselectAll', this.deselectAll );
 			this.className	= this.pfx + 'assets';
-
 			this.events = {};
 			this.events.submit = 'addFromStr';
 			this.delegateEvents();
@@ -113,15 +112,15 @@ define(['backbone', './AssetView', './AssetImageView', './FileUploader', 'text!.
 		render: function() {
 			var fragment = document.createDocumentFragment();
 			this.$el.empty();
+			console.log("Assets view render");
 
 			this.collection.each(function(model){
 				this.addAsset(model, fragment);
 			},this);
 
 			this.$el.html(this.template({
-				pfx: this.pfx,
+				pfx:	this.pfx,
 				ppfx: this.ppfx,
-				btnText: this.config.addBtnText,
 			}));
 
 			this.$el.find('.'+this.pfx + 'assets').append(fragment);

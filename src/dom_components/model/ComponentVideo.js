@@ -1,5 +1,5 @@
-define(['./ComponentImage', './Component'],
-	function (Component, OComponent) {
+define(['./ComponentImage'],
+	function (Component) {
 
 		var yt = 'yt';
 		var vi = 'vi';
@@ -12,16 +12,15 @@ define(['./ComponentImage', './Component'],
 					videoId: '',
 					void: 0,
 					provider: '', // on change of provider, traits are switched
-					ytUrl: 'https://www.youtube.com/embed/',
-					viUrl: 'https://player.vimeo.com/video/',
+					ytUrl: 'http://www.youtube.com/embed/',
+					viUrl: 'http://player.vimeo.com/video/',
 					loop: 0,
 					muted: 0,
 					autoplay: 0,
 					controls: 1,
 					color: '',
 					sources: [],
-					attributes:{allowfullscreen:'allowfullscreen'},
-					toolbar: OComponent.prototype.defaults.toolbar,
+					attributes:{allowfullscreen:'allowfullscreen'}
 			}),
 
 			initialize: function(o, opt) {
